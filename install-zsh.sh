@@ -29,6 +29,10 @@ fi
 # Assumes default ZSH installation
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 
+# Install theme
+# https://github.com/romkatv/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 # Installs plugins
 git clone https://github.com/bernardop/iterm-tab-color-oh-my-zsh.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/iterm-tab-color
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -36,3 +40,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # Fix permissions
 chmod 700 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+echo "restart zsh for updates"
+echo "run p10k configure to finish setup"

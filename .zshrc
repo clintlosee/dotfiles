@@ -153,6 +153,7 @@ alias la='ls -lAFh'   #long list,show almost all,show type,human readable
 alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
 alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
 alias ll='ls -l'      #long list
+alias lsa='ls -a'      #simple list
 
 alias npkill='npx npkill' #run npkill to kill old node modules folders
 
@@ -165,8 +166,8 @@ alias tgadmin="cd ~/Code/TruGolf/admin"
 alias tgadminstart="cd ~/Code/TruGolf/admin && bundle exec rails server"
 alias tgadminstartprod="cd ~/Code/TruGolf/admin && bundle exec rails server -e production"
 alias tgnadmin="cd ~/Code/TruGolf/node-admin"
-alias zshconfig="code ~/.zshrc"
-alias zshreload="source ~/.zshrc"
+alias zshconfig="code ~/dotfiles/.zshrc"
+alias zshreload="source ~/dotfiles/.zshrc"
 
 #
 # Git Plugin Aliases for reference
