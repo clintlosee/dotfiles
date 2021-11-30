@@ -80,6 +80,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
