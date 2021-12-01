@@ -9,6 +9,8 @@ is_executable() {
   type "$1" > /dev/null 2>&1
 }
 
+# Backup any existing dotfiles
+
 if is_executable "git"; then
   CMD="git clone $SOURCE $TARGET"
 elif is_executable "curl"; then
