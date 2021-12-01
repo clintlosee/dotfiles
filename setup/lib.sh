@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-debug=${1:-false}
 
 # some bash library helpers
 # @author Adam Eivy https://github.com/atomantic/dotfiles
@@ -12,43 +11,53 @@ COL_GREEN=$ESC_SEQ"32;01m"
 COL_YELLOW=$ESC_SEQ"33;01m"
 COL_BLUE=$ESC_SEQ"\e[96m"
 
-function ok() {
-  echo -e "$COL_GREEN[ok]$COL_RESET $1"
+
+# function bot() {
+#   echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
+# }
+
+function bot() {
+    echo -e "\n$COL_GREEN\[._.]/$COL_RESET - "$1
 }
 
 function botintro() {
-  echo -e "\n$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
-}
-function bot() {
-  echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
+    echo -e "\n$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
 }
 
-function actioninfo() {
-  echo -e "$COL_YELLOW[action]:$COL_RESET ⇒ $1"
-}
-
-function running() {
-  echo -en "$COL_YELLOW ⇒ $COL_RESET $1: "
-}
-
-function action() {
-  echo -e "\n$COL_YELLOW[action]:$COL_RESET ⇒ $1"
+function ok() {
+    echo -e "\n$COL_GREEN [ok] $COL_RESET "$1
 }
 
 function warn() {
-  echo -e "$COL_YELLOW[warning]$COL_RESET $1"
-}
-
-function success() {
-  echo -e "$COL_GREEN[success]$COL_RESET $1"
+    echo -e "$COL_YELLOW [warning] $COL_RESET "$1
 }
 
 function error() {
-  echo -e "$COL_RED[error]$COL_RESET $1"
+    echo -e "$COL_RED [error] $COL_RESET "$1
+}
+
+function success() {
+    echo -e "$COL_GREEN [success] $COL_RESET "$1
+}
+
+function running() {
+    echo -en "$COL_YELLOW ⇒ $COL_RESET"$1": "
+}
+
+function action() {
+    echo -e "\n$COL_YELLOW [action] $COL_RESET\n ⇒ $1..."
+}
+
+function actioninfo() {
+    echo -e "$COL_YELLOW [action] $COL_RESET ⇒ "$1
 }
 
 function cancelled() {
-  echo -e "$COL_RED[cancelled]$COL_RESET $1"
+    echo -e "$COL_RED [cancelled] $COL_RESET "$1
+}
+
+function print_error() {
+    printf " [✖] %s\n" "$1"
 }
 
 function awesome_header() {
@@ -59,7 +68,7 @@ function awesome_header() {
   echo -en "\n$COL_BLUE     ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ $COL_RESET"
   echo -en "\n$COL_BLUE    ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██ $COL_RESET"
   echo -en "\n$COL_BLUE    ░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ $COL_RESET"
-  echo -en "\n$COL_BLUE     ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ $COL_RESET"
+  echo -en "\n$COL_BLUE ░█  ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ $COL_RESET"
   echo -en "\n"
   echo -en "\n"
 }

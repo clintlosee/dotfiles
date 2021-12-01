@@ -1,11 +1,45 @@
 #!/usr/bin/env bash
 
+source ./setup/lib.sh # load help lib.
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-# Ask for the administrator password upfront
-sudo -v
+# ----
+# Prep
+# ----
+bot "Hi, I'm the MacOS bot\n\e"
+bot "Let's get you set up $(whoami)!"
+
+# Introduction
+awesome_header
+
+botintro "This script sets up new machines, \e[1m*use with caution*\e[0m. For more information, please see [https://github.com/clintlosee/dotfiles]."
+echo -e "\nPress \e[1mENTER\e[0m to continue."
+read -n 1
+
+bot "OK, what we're going to do:\n"
+
+actioninfo "1. Backup directories and files we'll be touching."
+actioninfo "2. Create required directories."
+# actioninfo "3. Install Xcode Command Line Tools."
+# actioninfo "4. Install Homebrew and all required apps."
+# actioninfo "5. Create symlinks for directories and files."
+actioninfo "6. Final touches."
+
+botintro "To start we'll need your password.\n"
+
+tput bel
+
+echo -e "\nReady? Press \e[1mENTER\e[0m to continue."
+read -n 1
+
+ok
+
+# Ask for the administrator password upfront.
+# sudo -v
+ask_for_sudo
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -14,18 +48,29 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Clint's Customizations                                                      #
 ###############################################################################
 
-echo "Hello $(whoami)! Let's get you set up."
+bot "Backup directories and files we'll be touching."
 
-echo "mkdir -p ${HOME}/code"
+action "Create backup directories"
+# Make backup dirs.
+backupdir="$HOME/backup"
+dotfilesbackupdir="$HOME/backup/dotfiles-backup"
+
+mkdir -p $backupdir
+mkdir -p $dotfilesbackupdir
+success "Directories created"
+
+action "Create code directory -> mkdir -p ${HOME}/code"
 mkdir -p "${HOME}/code"
+success "Code directory created"
 
-echo "cloning dotfiles"
+action "Cloning dotfiles and adding symlinks"
 git clone git@github.com:clintlosee/dotfiles.git "${HOME}/dotfiles"
 ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
 ln -s "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
 ln -s "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
+success "dotfiles cloned"
 
-echo "making system modifications:"
+bot "Making system modifications..."
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -823,7 +868,8 @@ for app in "Activity Monitor" \
   "iCal"; do
   killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+success
+bot "Done. Note that some of these changes require a logout/restart to take effect."
 
 printf "TODO:\n\
 install: \n\
