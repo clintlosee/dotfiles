@@ -1,16 +1,26 @@
 #!/usr/bin/env bash
 
+source ./setup/lib.sh # load help lib.
+
 # Install tools using Homebrew.
 
-echo "installing homebrew"
+bot "Installing homebrew"
 # install homebrew https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+success "Installed"
+
+bot "Make sure homebrew is up-to-date"
 
 # Make sure we’re using the latest Homebrew.
 brew update
 
 # Upgrade any already-installed formulae.
 brew upgrade
+
+success "Updated"
+
+bot "Install homebrew packages and applications"
 
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
@@ -44,5 +54,11 @@ brew install alt-tab
 brew install quicklook-json
 brew install numi
 
+success "Apps and packages installed"
+
+bot "Cleanup stuff"
+
 # Remove outdated versions from the cellar.
 brew cleanup
+
+success "All done!"

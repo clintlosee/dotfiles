@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./setup/lib.sh # load help lib.
+
 # Detect machine
 unameOut="$(uname -s)"
 case "${unameOut}" in
@@ -10,7 +12,9 @@ case "${unameOut}" in
   *)          MACHINE="UNKNOWN:${unameOut}"
 esac
 
-echo $MACHINE
+bot $MACHINE
+
+bot "Install .oh-my-zsh"
 
 # Installs .oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -25,6 +29,10 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
 fi
+
+success ".oh-my-zsh installed"
+
+bot "Setup custom ZSH settings and install theme and plugins"
 
 # Assumes default ZSH installation
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
@@ -41,5 +49,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # Fix permissions
 chmod 700 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo "restart zsh for updates"
-echo "run p10k configure to finish setup"
+success "Custom settings finished"
+
+bot "restart zsh for updates"
+bot "run p10k configure to finish setup"
