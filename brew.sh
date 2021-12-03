@@ -25,6 +25,13 @@ bot "Install homebrew packages and applications"
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
+# Run these two commands in your terminal to add Homebrew to your PATH:
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/clintlosee/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+# - Run brew help to get started
+# - Further documentation:
+#     https://docs.brew.sh
+
 # Installs Casks
 brew tap homebrew/cask
 brew tap heroku/brew
